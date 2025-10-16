@@ -8,7 +8,16 @@ LinkedList::~LinkedList() {
 }
 void LinkedList::push_front(int v) { head_ = new Node(v, head_); }
 void LinkedList::remove_evens() {
-    // TODO: implement
+    Node** curr = &head_;
+    while (*curr) {
+        if ((*curr)->value % 2 == 0) {
+            Node* doomed = *curr;
+            *curr = (*curr)->next;
+            delete doomed;
+        } else {
+            curr = &(*curr)->next;
+        }
+    }
 }
 std::string LinkedList::to_string() const {
     std::ostringstream oss;
